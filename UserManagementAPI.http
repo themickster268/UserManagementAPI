@@ -1,0 +1,41 @@
+@UserManagementAPI_HostAddress = http://localhost:5010
+
+GET {{UserManagementAPI_HostAddress}}/api/users
+Accept: application/json
+Authorization: valid-token
+
+###
+
+GET {{UserManagementAPI_HostAddress}}/api/users/4
+Accept: application/json
+Authorization: valid-token
+
+###
+
+POST {{UserManagementAPI_HostAddress}}/api/users
+Accept: application/json
+Content-Type: application/json
+Authorization: valid-token
+    
+{
+  "name": "Michael",
+  "email": "michael@example.com"
+}
+
+###
+
+PUT {{UserManagementAPI_HostAddress}}/api/users/4
+Accept: application/json
+Content-Type: application/json
+Authorization: valid-token
+
+{
+  "name": "Michelle",
+  "email": "michelle@example.com"
+}
+
+###
+
+DELETE {{UserManagementAPI_HostAddress}}/api/users/4
+Accept: application/json
+Authorization: valid-token
