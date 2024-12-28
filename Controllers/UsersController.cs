@@ -39,7 +39,7 @@ public class UsersController : ControllerBase
     [HttpPost]
     public ActionResult<User> AddUser(User user)
     {
-        if (string.IsNullOrEmpty(user.Name) || !IsValidEmail(user.Email))
+        if (IsValidUser(user))
         {
             return BadRequest("Invalid user data.");
         }
@@ -52,7 +52,7 @@ public class UsersController : ControllerBase
     public ActionResult UpdateUser(int id, User updatedUser)
     {
         if (!Users.ContainsKey(id)) return NotFound();
-        if (string.IsNullOrEmpty(updatedUser.Name) || !IsValidEmail(updatedUser.Email))
+        if (IsValidUser(updatedUser))
         {
             return BadRequest("Invalid user data.");
         }
@@ -70,6 +70,9 @@ public class UsersController : ControllerBase
         }
         return NotFound();
     }
+
+    private bool IsValidUser(User user) =>
+        !string.IsNullOrEmpty(user.Name) && IsValidEmail(user.Email);
     
     private bool IsValidEmail(string email)
     {
